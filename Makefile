@@ -35,7 +35,7 @@ clean-test:
 	rm -fr htmlcov/
 
 lint:
-	flake8 py-emspost-api tests
+	flake8 emspost_api tests
 
 test:
 	python setup.py test
@@ -44,7 +44,7 @@ test-all:
 	tox
 
 coverage:
-	coverage run --source py_emspost_api setup.py test
+	coverage run --source emspost_api setup.py test
 	coverage report -m
 	coverage html
 	open htmlcov/index.html
@@ -52,7 +52,7 @@ coverage:
 docs:
 	rm -f docs/py-emspost-api.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ py_emspost_api
+	sphinx-apidoc -o docs/ emspost_api
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	open docs/_build/html/index.html

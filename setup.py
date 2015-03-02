@@ -24,17 +24,17 @@ test_requirements = [
 
 setup(
     name='py-emspost-api',
-    version='0.0.1',
+    version='0.1.0-dev',
     description="Python API for EMS Russian ervice:",
     long_description=readme + '\n\n' + history,
     author="Oleg Rybkin aka Fish",
     author_email='okfish@yandex.ru',
     url='https://github.com/okfish/py-emspost-api',
     packages=[
-        'py_emspost_api',
+        'emspost_api',
     ],
-    package_dir={'py_emspost_api':
-                 'py_emspost_api'},
+    package_dir={'emspost_api':
+                 'emspost_api'},
     include_package_data=True,
     install_requires=requirements,
     license="BSD",
