@@ -48,7 +48,6 @@ API_CALC_OPTIONS = {
     'type' : 'att',
 }
 
-
 def curl_setopt_array(curl, opts):
     for key in opts:
         curl.setopt(getattr(curl, key), opts[key])
@@ -184,12 +183,16 @@ class EmsAPI(object):
                 if title:
                     locs = self.filter(locs, 
                                        lambda k,v: k == u'name' and title.lower() in v.lower() )
+            
                 for city in locs:
                     result.append((city['value'],
                                    city['name'],
                                    city['type'],
                                   ))
-                return result, 0
+                if len(result)>0:
+                    return result, 0
+                else:
+                    return None, 'not_found'
             else:
                 return None, res['rsp']['err']
         else:
@@ -200,7 +203,7 @@ class EmsAPI(object):
         Returns a tuple of (list, error) of all EMS regions 
         and cities where list of tuples (id, title, type).
         """
-        return self.findbytitle('','regions')
+        return self.findbytitle('','russia')
 
     def calculate(self, payload):
         """
@@ -217,6 +220,7 @@ class EmsAPI(object):
         except EmsAPIException as e:
             return None, e
         return res, 0
+    
     def get_max_weight(self):
         """
         Return maximum weight per package (in kg)
